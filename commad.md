@@ -24,3 +24,6 @@ buildozer -v android debug
 
 ./sdkmanager --install "platform-tools" "platforms;android-29" "build-tools;29.0.3"
 
+sdkmanager --install "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
+
