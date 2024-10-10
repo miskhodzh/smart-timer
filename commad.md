@@ -21,3 +21,6 @@ bash
 Копировать код
 buildozer -v android debug
 Этот код создаст простое приложение, которое можно запустить на Android.
+
+./sdkmanager --install "platform-tools" "platforms;android-29" "build-tools;29.0.3"
+
