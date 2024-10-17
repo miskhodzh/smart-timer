@@ -4,8 +4,6 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.core.window import Window
 
-Window.size = (393, 852)
-
 class MyApp(App):
     def build(self):
         # Изначально фон белый
