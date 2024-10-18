@@ -13,7 +13,7 @@ class MainWidget(BoxLayout):
     timer = StringProperty("00:00:00")
     sec, minute, hour = 0, 0, 0
 
-    sound = SoundLoader.load('1.mp3')
+    sound = SoundLoader.load('assets/1.wav')
 
     running = False
     def check_points(self):
