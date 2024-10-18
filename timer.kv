@@ -1,0 +1,18 @@
+<MainWidget>:
+    orientation: 'vertical'
+    input_text: text_input
+    TextInput:
+        id: text_input
+        font_size: 24
+
+    Button:
+        text: 'Сохранить текст'
+        on_press: root.save_text_input()
+    Button:
+        text: 'Показать текст из файла'
+        on_press: root.show_text()
+
+    Label:
+        text: root.label_text
+        halign: 'left'
+
