@@ -8,6 +8,8 @@ from kivy.core.audio import SoundLoader
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.clock import Clock
 
+from plyer import notification
+
 
 class MainWidget(Screen):
 
@@ -19,8 +21,15 @@ class MainWidget(Screen):
     running = False
 
     def check_points(self):
-        if self.hour == 0 and self.minute == 0 and self.sec == 5:
+        data = {
+            ...
+        }
+        if self.hour == 0 and self.minute == 0 and self.sec == 3:
             self.sound.play()
+            notification.notify(
+                title = "HEADING HERE",
+                message=" DESCRIPTION HERE"
+            )
 
     def update_time(self, dt):
         if self.running:
@@ -44,18 +53,25 @@ class MainWidget(Screen):
             self.running = False
         else:
             self.running = True
+    def reset(self):
+        self.sec = 0
+        self.minute = 0
+        self.hour = 0
+        self.timer = '00:00:00'
+        self.running = False
 
 class AddMode(Screen):
     ...
 
 
-screen_manager = ScreenManager(transition=SlideTransition())
 
-screen_manager.add_widget(MainWidget(name='main_widget'))
-screen_manager.add_widget(AddMode(name='add_mode'))
 
 class TimerApp(App):
     def build(self):
+        screen_manager = ScreenManager(transition=SlideTransition())
+
+        screen_manager.add_widget(MainWidget(name='main_widget'))
+        screen_manager.add_widget(AddMode(name='add_mode'))
         return screen_manager
     
     def on_start(self):

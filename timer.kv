@@ -8,16 +8,38 @@
         Label:
             text: 'Программа 1. 24 минуты'
 
-        Button:
-            text: 'Запуск'
-            on_press: root.start()
+        BoxLayout:
+            Button:
+                text: 'Запуск'
+                on_press: root.start()
+            Button:
+                text: 'Сброс'
+                on_press: root.reset()
+        BoxLayout:
+            Button:
+                text: 'Программа 1'
+            Button:
+                text: 'Программа 2'
+            Button:
+                text: 'Программа 3'
+            Button:
+                text: 'Программа 4'
+
         Button:
             text: 'Добавить режим'
             on_press:
-                root.manager.transition.direction = 'left'
-                root.manager.transition.duration = '1'
-                root.manager.current = 'add_mod'
+                root.manager.transition.direction = 'up'
+                root.manager.transition.duration = '0.4'
+                root.manager.current = 'add_mode'
 
-<AddMod>:
-    Label:
-        text: 'Добавить режим пиликания'
+<AddMode>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Добавить режим пиликания'
+        Button:
+            text: 'Назад'
+            on_press:
+                root.manager.transition.direction = 'down'
+                root.manager.transition.duration = '0.4'
+                root.manager.current = 'main_widget'
