@@ -2,13 +2,14 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.core.window import Window
 from kivy.core.audio import SoundLoader
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.clock import Clock
 
 
-class MainWidget(BoxLayout):
+class MainWidget(Screen):
 
     timer = StringProperty("00:00:00")
     sec, minute, hour = 0, 0, 0
@@ -16,6 +17,7 @@ class MainWidget(BoxLayout):
     sound = SoundLoader.load('assets/1.wav')
 
     running = False
+
     def check_points(self):
         if self.hour == 0 and self.minute == 0 and self.sec == 5:
             self.sound.play()
@@ -43,13 +45,21 @@ class MainWidget(BoxLayout):
         else:
             self.running = True
 
+class AddMode(Screen):
+    ...
+
+
+screen_manager = ScreenManager(transition=SlideTransition())
+
+screen_manager.add_widget(MainWidget(name='main_widget'))
+screen_manager.add_widget(AddMode(name='add_mode'))
 
 class TimerApp(App):
     def build(self):
-        return MainWidget()
+        return screen_manager
     
     def on_start(self):
-        Clock.schedule_interval(self.root.update_time, 1)
+        Clock.schedule_interval(self.root.get_screen('main_widget').update_time, 1)
 
 if __name__ == "__main__":
     TimerApp().run()

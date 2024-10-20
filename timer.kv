@@ -1,9 +1,23 @@
 <MainWidget>:
-    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'vertical'
 
+        Label:
+            text: root.timer
+
+        Label:
+            text: 'Программа 1. 24 минуты'
+
+        Button:
+            text: 'Запуск'
+            on_press: root.start()
+        Button:
+            text: 'Добавить режим'
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.transition.duration = '1'
+                root.manager.current = 'add_mod'
+
+<AddMod>:
     Label:
-        text: root.timer
-    
-    Button:
-        text: 'Запуск'
-        on_press: root.start()
+        text: 'Добавить режим пиликания'
