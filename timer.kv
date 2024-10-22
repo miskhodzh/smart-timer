@@ -4,9 +4,10 @@
 
         Label:
             text: root.timer
-
         Label:
-            text: 'Программа 1. 24 минуты'
+            text: root.mode_name
+        Label:
+            text: f'\n{root.mes}'
 
         BoxLayout:
             Button:
@@ -16,14 +17,7 @@
                 text: 'Сброс'
                 on_press: root.reset()
         BoxLayout:
-            Button:
-                text: 'Программа 1'
-            Button:
-                text: 'Программа 2'
-            Button:
-                text: 'Программа 3'
-            Button:
-                text: 'Программа 4'
+            id: modes
 
         Button:
             text: 'Добавить режим'
