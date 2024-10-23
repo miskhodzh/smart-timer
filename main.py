@@ -9,6 +9,9 @@ from kivy.clock import Clock
 
 from plyer import notification
 
+from kivy.core.window import Window
+Window.size = (393, 852)
+
 import json
 
 
@@ -33,13 +36,12 @@ class MainWidget(Screen):
     def load_btns(self):
         button_layout = self.ids.modes
         for mode in self.modes:
-            btn = Button(text=mode['name'] + mode['descr'])
+            btn = Button(text=mode['name'])
             btn.id = mode['id']
             btn.bind(on_press=self.choose_mode)
             button_layout.add_widget(btn)
 
     def choose_mode(self, instance):
-        print(instance.id)
         self.current_mode_id = instance.id
         self.mode_name = self.modes[self.current_mode_id]['name']
 
@@ -48,7 +50,6 @@ class MainWidget(Screen):
         """Функция для проверки временных точек"""
         points = self.modes[self.current_mode_id]['points']
         # point = points[0]
-        print(points[-1])
         for point in points:
             if self.hour == point[0] and self.minute == point[1] and self.sec == point[2]:
                 self.sound.play()

@@ -1,30 +1,45 @@
 <MainWidget>:
-    BoxLayout:
-        orientation: 'vertical'
-
+    FloatLayout:
         Label:
+            pos: 0, 200
             text: root.timer
+            font_size: 64
         Label:
             text: root.mode_name
+            pos: 0, 100
         Label:
+            pos: 0, 150
             text: f'\n{root.mes}'
 
-        BoxLayout:
+        FloatLayout:
             Button:
-                text: 'Запуск'
+                size_hint: None, None
+                size: (100, 100)
+                pos: 0, 320
+                pos_hint: {'center_x': 0.5}
+                background_normal: 'assets/start_button.png'
                 on_press: root.start()
             Button:
+                size_hint: None, None
+                size: (50, 10)
+                pos_hint: {'center_x': 0.5}
+                pos: 0, 250
                 text: 'Сброс'
                 on_press: root.reset()
+            Button:
+                text: 'Добавить режим'
+                size_hint: None, None
+                size: (150, 50)
+                pos_hint: {'center_x': 0.5}
+                on_press:
+                    root.manager.transition.direction = 'up'
+                    root.manager.transition.duration = '0.4'
+                    root.manager.current = 'add_mode'
         BoxLayout:
+            size_hint: 1, None
+            pos: 0, 120
             id: modes
 
-        Button:
-            text: 'Добавить режим'
-            on_press:
-                root.manager.transition.direction = 'up'
-                root.manager.transition.duration = '0.4'
-                root.manager.current = 'add_mode'
 
 <AddMode>:
     BoxLayout:
